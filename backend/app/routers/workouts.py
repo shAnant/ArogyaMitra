@@ -1,40 +1,29 @@
 from fastapi import APIRouter
-from datetime import datetime
 
-from app.services.calendar_service import CalendarService
+router = APIRouter(prefix="/workouts", tags=["Workouts"])
 
-
-router = APIRouter(prefix="/calendar", tags=["Calendar"])
-
-
-@router.post("/schedule-workout")
-def schedule_workout(access_token: str):
-
-    calendar = CalendarService(access_token)
-
-    event = calendar.create_workout_event(
-        "ArogyaMitra Workout Session",
-        datetime.now()
-    )
-
-    return event
 
 @router.get("/plan")
 def get_workout_plan():
-
     return {
-        "exercises": [
+        "plan": [
             {
                 "name": "Push Ups",
                 "sets": 3,
-                "reps": 10,
-                "video": "https://example.com/pushup.mp4"
+                "reps": 12,
+                "video": "https://www.w3schools.com/html/mov_bbb.mp4"
             },
             {
                 "name": "Squats",
                 "sets": 3,
-                "reps": 12,
-                "video": "https://example.com/squat.mp4"
+                "reps": 15,
+                "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+            },
+            {
+                "name": "Plank",
+                "sets": 3,
+                "reps": 30,
+                "video": "https://www.w3schools.com/html/mov_bbb.mp4"
             }
         ]
     }

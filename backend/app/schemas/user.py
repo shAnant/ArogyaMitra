@@ -20,7 +20,7 @@ class UserBase(BaseModel):
     diet_preference: Optional[DietPreference] = None
 
 
-class UserCreate(UserBase):
+class UserRegister(UserBase):
 
     password: str
 

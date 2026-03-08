@@ -7,7 +7,7 @@ const WorkoutPlans: React.FC = () => {
 
   const navigate = useNavigate()
 
-  const [plan, setPlan] = useState<any>(null)
+  const [plan, setPlan] = useState<any[]>([])
 
   useEffect(() => {
 
@@ -15,7 +15,7 @@ const WorkoutPlans: React.FC = () => {
 
       const res = await workoutApi.getWorkoutPlan()
 
-      setPlan(res.data)
+      setPlan(res.data.plan)
 
     }
 
@@ -23,7 +23,7 @@ const WorkoutPlans: React.FC = () => {
 
   }, [])
 
-  if (!plan) return <p className="p-8">Loading workout plan...</p>
+  if (!plan.length) return <p className="p-8">Loading workout plan...</p>
 
   return (
 
@@ -39,7 +39,7 @@ const WorkoutPlans: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          {plan.exercises.map((exercise:any, index:number) => (
+          {plan.map((exercise:any, index:number) => (
 
             <div
               key={index}

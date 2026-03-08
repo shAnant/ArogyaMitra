@@ -1,14 +1,18 @@
 from fastapi import APIRouter
+from datetime import datetime
 
-router = APIRouter(
-    prefix="/calendar",
-    tags=["Calendar"]
-)
+from app.services.calendar_service import CalendarService
 
-@router.get("/schedule")
-def get_schedule():
+router = APIRouter(prefix="/calendar", tags=["Calendar"])
 
-    return {
-        "workout_time": "7:00 AM",
-        "meal_reminder": "1:00 PM"
-    }
+@router.post("/schedule-workout")
+def schedule_workout(access_token: str):
+
+    calendar = CalendarService(access_token)
+
+    event = calendar.create_workout_event(
+        "ArogyaMitra Workout Session",
+        datetime.now()
+    )
+
+    return event

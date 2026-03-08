@@ -13,8 +13,8 @@ import { workoutApi } from "../../services/api"
 import toast from "react-hot-toast"
 import { useLocation, useNavigate } from "react-router-dom"
 
-const location = useLocation()
-const exercise = location.state?.exercise
+// const location = useLocation()
+// const exercise = location.state?.exercise
 const ExercisePlayer: React.FC = () => {
 
   const location = useLocation()
